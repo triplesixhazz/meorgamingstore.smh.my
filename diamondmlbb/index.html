@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topup MLBB - MeorGamingStore</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="main-title">MeorGamingStore</h1>
+    <h1 class="main-title">💎 Topup Diamond MLBB 💎</h1>
+    <p class="tagline">Pilih jumlah diamond yang anda mahu</p>
+
+    <!-- Pilihan Diamond -->
+    <div class="package-grid">
+        <button class="package-btn" onclick="selectPackage('50 + 5 Diamond (1st Time 50 + 50)', '4.00 MYR')">50 + 5 Diamond<br>(1st Time 50 + 50)<br>4.00 MYR</button>
+        <button class="package-btn" onclick="selectPackage('150 + 15 Diamond (1st Time 150 + 150)', '12.00 MYR')">150 + 15 Diamond<br>(1st Time 150 + 150)<br>12.00 MYR</button>
+        <button class="package-btn" onclick="selectPackage('250 + 25 Diamond (1st Time 250 + 250)', '19.00 MYR')">250 + 25 Diamond<br>(1st Time 250 + 250)<br>19.00 MYR</button>
+        <button class="package-btn" onclick="selectPackage('500 + 65 Diamond (1st Time 500 + 500)', '39.00 MYR')">500 + 65 Diamond<br>(1st Time 500 + 500)<br>39.00 MYR</button>
+        <button class="package-btn" onclick="selectPackage('13 + 1 Diamond', '1.00 MYR')">13 + 1 Diamond<br>1.00 MYR</button>
+        <button class="package-btn" onclick="selectPackage('38 + 4 Diamond', '3.00 MYR')">38 + 4 Diamond<br>3.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('64 + 6 Diamond', '5.00 MYR')">64 + 6 Diamond<br>5.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('127 + 13 Diamond', '10.00 MYR')">127 + 13 Diamond<br>10.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('150 + 15 Diamond', '12.00 MYR')">150 + 15 Diamond<br>12.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('254 + 30 Diamond', '20.00 MYR')">254 + 30 Diamond<br>20.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('317 + 38 Diamond', '25.00 MYR')">317 + 38 Diamond<br>39.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('383 + 46 Diamond', '30.00 MYR')">383 + 46 Diamond<br>30.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('633 + 83 Diamond', '49.00 MYR')">633 + 83 Diamond<br>49.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('1252 + 194 Diamond', '98.00 MYR')">1252 + 194 Diamond<br>98.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('6252 + 1250 Diamond', '487.00 MYR')">6252 + 1250 Diamond<br>487.00 MYR</button>
+      <button class="package-btn" onclick="selectPackage('Weekly Diamond Pass', '8.00 MYR')">Weekly Diamond Pass<br>8.00 MYR</button>
+      </div>
+
+    <!-- Borang Isi Maklumat -->
+    <div id="form-section" class="form-card" style="display:none;">
+      <h2>Isi Maklumat Anda</h2>
+      <form id="topupForm">
+        <p><strong>Pakej:</strong> <span id="selectedPackage"></span></p>
+        <p><strong>Harga:</strong> <span id="selectedPrice"></span></p>
+
+        <input type="text" id="nameInput" placeholder="Nama Dalam Game" required />
+        <input type="text" id="idInput" placeholder="Game ID (cth: 12345678)" required />
+        <input type="text" id="serverInput" placeholder="Zone ID (cth: 1234)" required />
+
+        <button type="submit" class="btn">⚡ Continue to Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let selectedDiamond = '';
+    let selectedPrice = '';
+    const formSection = document.getElementById('form-section');
+
+    function selectPackage(diamond, price) {
+      selectedDiamond = diamond;
+      selectedPrice = price;
+
+      document.getElementById('selectedPackage').innerText = diamond;
+      document.getElementById('selectedPrice').innerText = price;
+      formSection.style.display = 'block';
+    }
+
+    document.getElementById('topupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('nameInput').value.trim();
+      const id = document.getElementById('idInput').value.trim();
+      const server = document.getElementById('serverInput').value.trim();
+
+      const whatsappNumber = "601112331454"; // Gantikan dengan nombor sebenar
+
+      const message = `📥 Pesanan Topup MLBB\n` +
+                      `💎 Pakej: ${selectedDiamond}\n` +
+                      `💰 Harga: ${selectedPrice}\n` +
+                      `👤 Nama: ${name}\n` +
+                      `🆔 ID: ${id} (${server})`;
+
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
