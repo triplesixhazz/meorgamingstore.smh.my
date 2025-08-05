@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topup Racing Master - MeorGamingStore</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="main-title">MeorGamingStore</h1>
+    <h1 class="main-title">💎 Topup Diamond Racing Master 💎</h1>
+    <p class="tagline">Pilih jumlah diamond yang anda mahu</p>
+    
+    <h1 class="main-title">Akan Datang</h1>
+
+    <!-- Borang Isi Maklumat -->
+    <div id="form-section" class="form-card" style="display:none;">
+      <h2>Isi Maklumat Anda</h2>
+      <form id="topupForm">
+        <p><strong>Pakej:</strong> <span id="selectedPackage"></span></p>
+        <p><strong>Harga:</strong> <span id="selectedPrice"></span></p>
+
+        <input type="text" id="nameInput" placeholder="Nama Dalam Game" required />
+        <input type="text" id="idInput" placeholder="Game ID (cth: 12345678)" required />
+        <input type="text" id="serverInput" placeholder="Zone ID (cth: 1234)" required />
+
+        <button type="submit" class="btn">⚡ Continue to Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let selectedDiamond = '';
+    let selectedPrice = '';
+    const formSection = document.getElementById('form-section');
+
+    function selectPackage(diamond, price) {
+      selectedDiamond = diamond;
+      selectedPrice = price;
+
+      document.getElementById('selectedPackage').innerText = diamond;
+      document.getElementById('selectedPrice').innerText = price;
+      formSection.style.display = 'block';
+    }
+
+    document.getElementById('topupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('nameInput').value.trim();
+      const id = document.getElementById('idInput').value.trim();
+      const server = document.getElementById('serverInput').value.trim();
+
+      const whatsappNumber = "601112331454"; // Gantikan dengan nombor sebenar
+
+      const message = `📥 Pesanan Topup MLBB\n` +
+                      `💎 Pakej: ${selectedDiamond}\n` +
+                      `💰 Harga: ${selectedPrice}\n` +
+                      `👤 Nama: ${name}\n` +
+                      `🆔 ID: ${id} (${server})`;
+
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
